@@ -1,3 +1,12 @@
+@extends('adminlte::page')
+
+@section('title', 'Home Page')
+
+@section('content_header')
+    <h1>List of Books</h1>
+@stop
+
+@section('content')
 <table class="table">
     <thead>
         <th>Slno</th>
@@ -14,3 +23,4 @@
         </tr>
     @endforeach
 </table>
+@stop
