@@ -1,0 +1,38 @@
+1. Create Database
+----------------
+	Create new database for our application
+
+2. Create and Configure Project 
+-------------------------------
+	composer create-project Laravel/Laravel Myproject
+	open project in Visual studio code
+	Modify .env and update DB Connection details
+	php artisan serve
+	Confirm that localhost:8000/ is working as expected (It should display Laravel Home page)
+
+3. Install and Integrate AdminLTE Packages
+---------------------------------------
+	composer require jeroennoten/laravel-adminlte
+	php artisan adminlte:install
+	composer require laravel/ui
+	php artisan ui bootstrap --auth
+	php artisan adminlte:install --only=auth_views
+
+4. Install DataTable Packages
+-----------------------------
+	composer require yajra/laravel-datatables-oracle "^11.0"
+
+5. Resolve manifest.json issue
+	Download and install node.js from https://nodejs.org/en/download
+	npm install
+	npm run build
+	Confirm that manifest.json generated in /public/build folder in our project location
+	open vite.config and add 'resources/css/app.css'
+
+6. Check the following routes and confirm that our application is working properly
+	localhost:8000/ (It should display Laravel Home page)
+	localhost:8000/home (It should display login page)
+	Confirm that registration and login pages are working properly and user details inserted into the user table
+
+	
+	
