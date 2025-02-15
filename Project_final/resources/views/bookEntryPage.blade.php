@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-        <form name="frmReg" method="post" action="saveBookDetails" >
+        <form name="frmReg" method="post" action="saveBookDetails" onSubmit="return validateBookDetails()" >
             @csrf
             <div class="form-group">
                 <label for="txtName">Name</label>
@@ -24,4 +24,23 @@
             <input type="submit" value="Save" class="btn btn-primary"/>
             <input type="reset" value="Cancel" class="btn btn-warning"/>
         </form>
+@stop
+
+@section('js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+    function validateBookDetails(){
+        if($('#txtName').val()==""){
+            alert("Book name cannot be null");
+            return false;
+        }
+        else if($('#txtAuth').val()==""){
+            alert("Author name cannot be null");
+            return false;
+        }
+        else
+            return true;
+
+    }
+    </script>
 @stop
