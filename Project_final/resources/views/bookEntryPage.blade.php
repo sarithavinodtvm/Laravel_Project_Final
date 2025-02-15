@@ -1,3 +1,12 @@
+@extends('adminlte::page')
+
+@section('title', 'Home Page')
+
+@section('content_header')
+    <h1>List of Books</h1>
+@stop
+
+@section('content')
 <html>
     <body>
         <h1>Add New Book</h1>
@@ -11,3 +20,4 @@
         </form>
     </body>
 </html>
+@stop
