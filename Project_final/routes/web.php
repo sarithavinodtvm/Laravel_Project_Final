@@ -20,3 +20,7 @@ Route::get('/viewAllBooks', [BooksController::class, 'viewAllBooks']);
 Route::get('/addNewBook', [BooksController::class, 'loadBookEntryPage']);
 
 Route::post('/saveBookDetails', [BooksController::class, 'saveBookDetails']);
+
+Route::get('/getBookData/{bookId}', [BooksController::class, 'getBookDataById']);
+
+

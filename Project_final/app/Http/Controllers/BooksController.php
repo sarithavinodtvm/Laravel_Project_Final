@@ -37,4 +37,9 @@ class BooksController extends Controller
                 return redirect("viewAllBooks");
             }
     }
+
+    public function getBookDataById($bookId){
+        $book=Book::find($bookId);
+        return response()->json(['book' => $book]);
+    }
 }
