@@ -22,8 +22,8 @@
             <td>{{$book->bookAuthor}}</td>
             <td>{{$book->bookDescription}}</td>
             <td>
-                <a class="btn btn-success" onClick="$('#editModal').modal('show')" > Edit </a>
-                <a class="btn btn-danger" onClick="$('#deleteModal').modal('show')"> Delete </a>
+                <button class="btn btn-primary btnEdit" data-id="{{ $book->id }}">Edit</button>
+                <a href="#deleteModal" class="btn btn-danger " data-toggle="modal" data-id="{{$book->id}}"> Delete </a>
             </td>
         </tr>
     @endforeach
@@ -64,16 +64,17 @@
             <form name="frmReg" method="post" action="saveBookDetails" onSubmit="return validateBookDetails()" >
 			<div class="modal-body">
                 @csrf
+                    <input type="hidden" name="txtId" id="txtId"/>
                 <div class="form-group">
-                    <label for="txtName">Name</label>
-                    <input type="text" name="txtName" id="txtName" class="form-control"/>
+                    <label for="txtTitle">Title</label>
+                    <input type="text" name="txtTitle" id="txtTitle" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label for="txtAuth">Author</label>
                     <input type="text" name="txtAuth" id="txtAuth" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label for="txtAuth">Description</label>
+                    <label for="txtDescr">Description</label>
                     <textarea name="txtDescr" id="txtDescr" class="form-control"></textarea><br>
                 </div>
 			</div>
@@ -88,3 +89,28 @@
 {{--end of Modal--}}
 
 @stop
+
+@section('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.btnEdit').click(function() {
+            bookId = $(this).data('id');
+            jQuery.noConflict(); 
+            $.ajax({
+                url: '/getBookData/' + bookId,
+                method: 'GET',
+                success: function(data) {
+                    $('#txtId').val(data.book.id);
+                    $('#txtTitle').val(data.book.bookTitle);
+                    $('#txtAuth').val(data.book.bookAuthor);
+                    $('#txtDescr').val(data.book.bookDescription);
+                    $('#editModal').modal('show');
+                }
+            });
+        });
+    });
+</script>
+@stop
+
