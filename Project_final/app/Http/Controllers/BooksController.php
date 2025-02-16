@@ -42,4 +42,25 @@ class BooksController extends Controller
         $book=Book::find($bookId);
         return response()->json(['book' => $book]);
     }
+
+    //update existing book details by book id
+    public function updateBookDetails(Request $request){
+        $id=$request->input("txtId");
+        $title=$request->input("txtTitle");
+        $author=$request->input("txtAuth");
+        $description=$request->input("txtDescr");
+        if($title=="")
+            echo "Title cannot be null";
+        else if($author=="")
+            echo "Author cannot be null";
+        else{
+            $book=Book::find($id);
+            $book->bookTitle=$title;
+            $book->bookAuthor=$author;
+            $book->bookDescription=$description;
+            $book->save();
+            //echo "updated successfully";
+            return redirect("viewAllBooks");
+        }
+}
 }

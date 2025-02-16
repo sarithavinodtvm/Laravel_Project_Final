@@ -15,12 +15,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/viewAllBooks', [BooksController::class, 'viewAllBooks']);
 
-//Routes to add new book
+//Route to load new book entry page
 
 Route::get('/addNewBook', [BooksController::class, 'loadBookEntryPage']);
 
+//Route to save new book details
+
 Route::post('/saveBookDetails', [BooksController::class, 'saveBookDetails']);
 
+//Route to get book details by ID
+
 Route::get('/getBookData/{bookId}', [BooksController::class, 'getBookDataById']);
+
+//Route to update boook details by ID
+
+Route::post('/updateBookDetails', [BooksController::class, 'updateBookDetails']);
 
 
