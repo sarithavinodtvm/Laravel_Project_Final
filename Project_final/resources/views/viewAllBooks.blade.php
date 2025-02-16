@@ -52,7 +52,7 @@
 {{--end of Modal}}
 
 {{--Modal for populating book details for updation--}}
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -79,8 +79,8 @@
                 </div>
 			</div>
 			<div class="modal-footer">
-                <input type="submit" value="Save" class="btn btn-primary"/>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="btnUpdate" class="btn btn-primary">Save</button>
+				<button type="button" id="btnCanel" class="btn btn-secondary">Cancel</button>
 			</div>
             </form>
 		</div>
@@ -107,6 +107,25 @@
                     $('#txtAuth').val(data.book.bookAuthor);
                     $('#txtDescr').val(data.book.bookDescription);
                     $('#editModal').modal('show');
+                }
+            });
+        });
+
+        $('#btnUpdate').click(function() {
+            jQuery.noConflict(); 
+            $.ajax({
+                url: '/updateBookDetails/',
+                method: 'POST',
+                data: {
+                    txtId: $('#txtId').val(),
+                    txtTitle: $('#txtTitle').val(),  
+                    txtAuth: $('#txtAuth').val(),  
+                    txtDescr: $('#txtDescr').val(),  
+                    _token: $('meta[name="csrf-token"]').attr('content')    
+                },
+                success: function(response) {
+                    alert(response.message);
+                    $('#editModal').modal('hide');
                 }
             });
         });

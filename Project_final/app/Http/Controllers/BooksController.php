@@ -45,6 +45,7 @@ class BooksController extends Controller
 
     //update existing book details by book id
     public function updateBookDetails(Request $request){
+        var_dump($request);
         $id=$request->input("txtId");
         $title=$request->input("txtTitle");
         $author=$request->input("txtAuth");
@@ -60,7 +61,7 @@ class BooksController extends Controller
             $book->bookDescription=$description;
             $book->save();
             //echo "updated successfully";
-            return redirect("viewAllBooks");
+            return response()->json(['message' => 'Book updated successfully!']);
         }
 }
 }
